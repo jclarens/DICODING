@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MyIntentApp</string>
+    <string name="ini_move_activity">ini MoveActivity</string>
 </resources>
