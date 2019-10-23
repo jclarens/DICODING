@@ -6,32 +6,38 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button btnMoveActivity;
+    private Button btnMoveDataActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btnMoveActivity = (Button)findViewById(R.id.btn_move_activity);
-//        btnMoveActivity.setOnClickListener(this);
-        btnMoveActivity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                switch (view.getId()){
-                    case R.id.btn_move_activity:
-                        Intent i = new Intent(MainActivity.this,MoveActivity.class);
-                        startActivity(i);
-                    break;
-                }
-            }
-        });
+        btnMoveActivity = findViewById(R.id.btn_move_activity);
+        btnMoveDataActivity = findViewById(R.id.btn_move_activity_data);
+
+        btnMoveActivity.setOnClickListener(this);
+        btnMoveDataActivity.setOnClickListener(this);
+
     }
-//    public void onClick (View v){
-//        switch (v.getId()){
-//
-//        }
-//    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btn_move_activity:
+                Intent moveIntent = new Intent(MainActivity.this, MoveActivity.class);
+                startActivity(moveIntent);
+                break;
+            case R.id.btn_move_activity_data:
+                Intent moveWithDataIntent = new Intent(MainActivity.this, MoveWithDataActivity.class);
+                moveWithDataIntent.putExtra(MoveWithDataActivity.EXTRA_NAME,"Sunrise");
+                moveWithDataIntent.putExtra(MoveWithDataActivity.EXTRA_AGE,5);
+                startActivity(moveWithDataIntent);
+                break;
+        }
+    }
+
 }
