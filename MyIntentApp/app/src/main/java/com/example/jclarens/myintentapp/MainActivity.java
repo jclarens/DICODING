@@ -1,6 +1,7 @@
 package com.example.jclarens.myintentapp;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +11,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private Button btnMoveActivity;
     private Button btnMoveDataActivity;
+    private Button btnDialPhone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,10 +19,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         btnMoveActivity = findViewById(R.id.btn_move_activity);
-        btnMoveDataActivity = findViewById(R.id.btn_move_activity_data);
-
         btnMoveActivity.setOnClickListener(this);
+
+        btnMoveDataActivity = findViewById(R.id.btn_move_activity_data);
         btnMoveDataActivity.setOnClickListener(this);
+
+        btnDialPhone = findViewById(R.id.btn_dial_number);
+        btnDialPhone.setOnClickListener(this);
 
     }
 
@@ -37,7 +42,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 moveWithDataIntent.putExtra(MoveWithDataActivity.EXTRA_AGE,5);
                 startActivity(moveWithDataIntent);
                 break;
+            case R.id.btn_dial_number:
+                String phoneNumber = "081210841382";
+                Intent dialPhoneIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phoneNumber));
+                startActivity(dialPhoneIntent);
+                break;
         }
     }
 
 }
+
